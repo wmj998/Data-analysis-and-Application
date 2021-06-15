@@ -82,8 +82,8 @@ print('detail中order_id为458的dishes_name为：\n',
       detail.loc[detail['order_id'] == '458',
                  ['order_id', 'dishes_name']])
 
-# print('detail中order_id为458的第1,5列数据为：\n',
-#       detail.iloc[detail['order_id'] == '458', [1, 5]])
+print('detail中order_id为458的第1,5列数据为：\n',
+      detail.iloc[list(detail['order_id'] == '458'), [1, 5]])
 
 # 代码 4-25
 print('detail中order_id为458的第1,5列数据为：\n',
@@ -94,7 +94,6 @@ print('列名为dishes_name行名为2,3,4,5,6的数据为：\n',
       detail.loc[2:6, 'dishes_name'])
 
 print('列位置为5,行位置为2至6的数据为：\n', detail.iloc[2:6, 5])
-# print('列位置为5行名为2至6的数据为：', '\n', detail.ix[2:6, 5])
 
 # 代码 4-27
 ##将order_id为458的，变换为45800
@@ -158,8 +157,7 @@ import pandas as pd
 
 engine = create_engine('mysql+pymysql://root:w_f1216570180@127.0.0.1:'
                        '3306/testdb?charset=utf8')
-detail = pd.read_sql_table('meal_order_detail1',
-                           con=engine)
+detail = pd.read_sql_table('meal_order_detail1', con=engine)
 order = pd.read_table('../data/meal_order_info.csv',
                       sep=',', encoding='gbk')
 user = pd.read_excel('../data/users.xlsx')
@@ -181,8 +179,7 @@ print('订单详情表counts和amounts两列的描述性统计为：\n',
 
 detail['order_id'] = detail['order_id'].astype('category')
 detail['dishes_name'] = detail['dishes_name'].astype('category')
-print('''订单信息表order_id(订单编号)与dishes_name(菜品名称)
-的描述性统计结果为：''', '\n',
+print('''订单信息表order_id(订单编号)与dishes_name(菜品名称)的描述性统计结果为：''', '\n',
       detail[['order_id', 'dishes_name']].describe())
 
 
